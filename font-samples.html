@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Font options — portfolio</title>
+<meta name="description" content="Nine typeface pairings rendered with the real portfolio content, so the choice can be made on how it actually reads.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Commissioner:wght@400..700&family=Fraunces:opsz,wght@9..144,400..700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif&family=Inter+Tight:wght@400..700&family=JetBrains+Mono:wght@400;500&family=Karla:wght@400..700&family=Manrope:wght@400..700&family=Newsreader:opsz,wght@6..72,400..700&family=Outfit:wght@400..700&family=Public+Sans:wght@400..700&family=Sora:wght@400..700&family=Space+Grotesk:wght@400..700&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔤</text></svg>">
+<script>
+  (function () {
+    var r = document.documentElement;
+    try {
+      var t = localStorage.getItem('jch-theme');
+      if (t === 'dark' || t === 'light') r.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  /* Same palette as the portfolio, so the type is judged in its real context. */
+  :root {
+    --bg:#fcfbfe; --bg-alt:#f5f2fb; --surface:#ffffff;
+    --border:#e8e3f3; --border-soft:#f1eef9;
+    --text:#262036; --text-muted:#5f5877; --text-faint:#706a82;
+    --accent:#7359c6; --accent-soft:#f4f1fc; --accent-deep:#5c45a8;
+    --mono:'JetBrains Mono', ui-monospace, Menlo, monospace;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(60,46,100,.04), 0 8px 24px -12px rgba(60,46,100,.13);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:#171425; --bg-alt:#1d1930; --surface:#211c36;
+      --border:#352e52; --border-soft:#2a2447;
+      --text:#ebe8f5; --text-muted:#aea7c6; --text-faint:#837c9c;
+      --accent:#b7a3f0; --accent-soft:#272040; --accent-deep:#cebbff;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.58);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:#171425; --bg-alt:#1d1930; --surface:#211c36;
+    --border:#352e52; --border-soft:#2a2447;
+    --text:#ebe8f5; --text-muted:#aea7c6; --text-faint:#837c9c;
+    --accent:#b7a3f0; --accent-soft:#272040; --accent-deep:#cebbff;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.58);
+  }
+
+  *,*::before,*::after { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:940px; margin-inline:auto; padding-inline:24px; }
+
+  /* ── page header ── */
+  .top { padding:56px 0 34px; border-bottom:1px solid var(--border); }
+  .top h1 { font-family:'Bricolage Grotesque',sans-serif; font-size:clamp(1.9rem,5vw,2.6rem);
+            letter-spacing:-.025em; margin:0 0 12px; font-weight:700; }
+  .top p { color:var(--text-muted); margin:0 0 8px; max-width:64ch; }
+  .top .hint { font-size:.9rem; color:var(--text-faint); }
+
+  .bar {
+    position:sticky; top:0; z-index:10; background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border); padding:11px 0;
+  }
+  .bar__inner { max-width:940px; margin-inline:auto; padding-inline:24px;
+                display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .bar strong { font-size:.85rem; font-weight:650; }
+  .bar .spacer { margin-left:auto; }
+  button {
+    font:inherit; font-size:.84rem; font-weight:600; cursor:pointer;
+    background:var(--surface); color:var(--text);
+    border:1px solid var(--border); border-radius:8px; padding:7px 13px;
+    transition:border-color .16s ease, color .16s ease;
+  }
+  button:hover { border-color:var(--accent); color:var(--accent); }
+
+  /* ── a sample card ── */
+  .card {
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:30px; margin:22px 0; box-shadow:var(--shadow);
+  }
+  .card__head {
+    display:flex; justify-content:space-between; align-items:baseline;
+    gap:10px 18px; flex-wrap:wrap; margin-bottom:6px;
+  }
+  .card__n {
+    font-family:var(--mono); font-size:.72rem; color:var(--accent);
+    letter-spacing:.1em; display:block; margin-bottom:6px;
+  }
+  .card__pair { font-size:1.05rem; font-weight:700; letter-spacing:-.01em; margin:0; }
+  .card__pair span { color:var(--text-faint); font-weight:500; }
+  .card__verdict { color:var(--text-muted); font-size:.92rem; margin:0 0 22px; max-width:70ch; }
+
+  /* Everything below uses the pairing's own fonts. */
+  .demo { border-top:1px solid var(--border-soft); padding-top:22px;
+          font-family:var(--body-font); }
+  .demo__name {
+    font-family:var(--display-font); font-size:clamp(2.1rem,5.4vw,3.1rem);
+    font-weight:var(--display-weight,700); letter-spacing:var(--display-tracking,-.03em);
+    line-height:1.1; margin:0 0 10px;
+  }
+  .demo__role { color:var(--text-muted); font-weight:500; margin:0 0 20px; font-size:1rem; }
+  .demo__h2 {
+    font-family:var(--display-font); font-size:1.5rem; font-weight:var(--display-weight,650);
+    letter-spacing:var(--display-tracking,-.02em); margin:0 0 4px;
+  }
+  .demo__h3 {
+    font-family:var(--display-font); font-size:1.14rem; font-weight:var(--display-weight,650);
+    letter-spacing:var(--display-tracking,-.01em); margin:20px 0 4px;
+  }
+  .demo__kicker { color:var(--accent); font-weight:600; font-size:.9rem; margin:0 0 12px; }
+  .demo__body { color:var(--text-muted); margin:0 0 14px; max-width:68ch; font-size:1rem; }
+  .demo__li {
+    position:relative; padding-left:20px; color:var(--text-muted);
+    font-size:.95rem; margin:0 0 8px; max-width:68ch;
+  }
+  .demo__li::before {
+    content:''; position:absolute; left:3px; top:.72em; width:5px; height:5px;
+    border-radius:50%; background:color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .demo__li strong { color:var(--text); font-weight:650; }
+  .demo__meta { font-family:var(--mono); font-size:.8rem; color:var(--text-faint); margin:14px 0 0; }
+
+  /* ── the copy-paste block ── */
+  details { margin-top:20px; border-top:1px solid var(--border-soft); padding-top:14px; }
+  summary {
+    cursor:pointer; font-size:.84rem; font-weight:600; color:var(--accent);
+    list-style:none; display:inline-flex; align-items:center; gap:6px;
+  }
+  summary::-webkit-details-marker { display:none; }
+  summary::before { content:'▸'; transition:transform .15s ease; display:inline-block; }
+  details[open] summary::before { transform:rotate(90deg); }
+  pre {
+    font-family:var(--mono); font-size:.76rem; line-height:1.7;
+    background:var(--bg-alt); border:1px solid var(--border-soft); border-radius:8px;
+    padding:14px; overflow-x:auto; margin:12px 0 0; color:var(--text-muted);
+    white-space:pre-wrap; word-break:break-all;
+  }
+
+  footer { border-top:1px solid var(--border); padding:30px 0 56px; margin-top:34px;
+           color:var(--text-faint); font-size:.88rem; }
+  footer a { color:var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar__inner">
+    <strong>Font options</strong>
+    <span class="spacer"></span>
+    <button type="button" id="themeBtn">Toggle light / dark</button>
+    <button type="button" id="expandBtn">Show all code</button>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <h1>Nine ways your portfolio could read</h1>
+    <p>
+      Each block below is your real content — your name, a section heading, a project title, a paragraph
+      from your intro, a bullet and a date label — set in a different pairing. Judge them on the body
+      paragraph, not the big name: that is where most of the page actually lives.
+    </p>
+    <p class="hint">
+      Option 1 is what the site uses right now. All nine are free on Google Fonts and licensed for
+      commercial use. Tell me the number and I'll apply it.
+    </p>
+  </div>
+</header>
+
+<main class="wrap" id="cards"></main>
+
+<footer class="wrap">
+  <p>
+    This page is not part of the site — nothing links to it. Delete <code>font-samples.html</code>
+    before you deploy, or leave it; it costs nothing.
+  </p>
+</footer>
+
+<script>
+const PAIRINGS = [
+  {
+    display: "'Bricolage Grotesque'", body: "'Manrope'",
+    name: "Bricolage Grotesque + Manrope",
+    note: "Current. Bricolage has genuine quirk — the widths shift between letters, which gives headings personality without being hard to read. Manrope underneath is quiet and slightly geometric. Safest of the distinctive options.",
+    q: "Archivo:wght@400..700"
+  },
+  {
+    display: "'Instrument Serif'", body: "'Inter Tight'",
+    name: "Instrument Serif + Inter Tight",
+    note: "The most editorial of the set. Instrument Serif is high-contrast and sharp, so your name reads like a masthead. Inter Tight is a condensed Inter — familiar but denser, so the bullet lists take less room. Strong if you want to look like a writer as much as an engineer.",
+    weight: 400, tracking: "-.015em"
+  },
+  {
+    display: "'Fraunces'", body: "'Commissioner'",
+    name: "Fraunces + Commissioner",
+    note: "Fraunces is a 'soft serif' with a lot of warmth and some wonk in the details. Commissioner is a neutral low-contrast sans that stays out of the way. The friendliest pairing here — it reads less corporate, more personal.",
+    tracking: "-.02em"
+  },
+  {
+    display: "'Space Grotesk'", body: "'IBM Plex Sans'",
+    name: "Space Grotesk + IBM Plex Sans",
+    note: "The most obviously technical. Space Grotesk has odd, memorable letterforms; Plex Sans was drawn by IBM for engineering documentation and reads well at small sizes. If you want the page to signal 'backend' before anyone reads a word, this is it.",
+    tracking: "-.025em"
+  },
+  {
+    display: "'Sora'", body: "'Sora'",
+    name: "Sora (one family throughout)",
+    note: "A single geometric family for everything. Using one typeface at different weights is a deliberate, confident choice — nothing clashes, and the page feels engineered rather than decorated. Slightly cooler and more anonymous than the others.",
+    tracking: "-.03em"
+  },
+  {
+    display: "'Newsreader'", body: "'Public Sans'",
+    name: "Newsreader + Public Sans",
+    note: "Newsreader is a literary serif built for long reading; Public Sans is the US government's open sans — plain, sturdy, faintly institutional. Best fit for the dissertation and the regulator project, where sounding measured helps.",
+    tracking: "-.01em"
+  },
+  {
+    display: "'Syne'", body: "'Archivo'",
+    name: "Syne + Archivo",
+    note: "The boldest option. Syne is an art-school display face with unusual proportions — it will be the first thing anyone notices. Archivo is a solid grotesque that grounds it. High risk, high reward: memorable, but it leans design-studio rather than engineer.",
+    weight: 700, tracking: "-.02em"
+  },
+  {
+    display: "'Outfit'", body: "'Karla'",
+    name: "Outfit + Karla",
+    note: "Outfit is a clean geometric sans with near-circular bowls; Karla has slightly odd, characterful details that keep the body text from feeling generic. The most approachable pairing — modern without trying hard.",
+    tracking: "-.03em"
+  },
+  {
+    display: "'Archivo'", body: "'Commissioner'",
+    name: "Archivo + Commissioner",
+    note: "The most conservative choice here, and the least likely to date. Archivo at heavy weights is punchy and newspaper-like; Commissioner is quietly neutral. Pick this if you want the work to be the only thing anyone notices.",
+    tracking: "-.025em"
+  }
+];
+
+const FONT_QUERY = {
+  "'Bricolage Grotesque'": "Bricolage+Grotesque:opsz,wght@12..96,400..800",
+  "'Manrope'": "Manrope:wght@400..700",
+  "'Instrument Serif'": "Instrument+Serif",
+  "'Inter Tight'": "Inter+Tight:wght@400..700",
+  "'Fraunces'": "Fraunces:opsz,wght@9..144,400..700",
+  "'Commissioner'": "Commissioner:wght@400..700",
+  "'Space Grotesk'": "Space+Grotesk:wght@400..700",
+  "'IBM Plex Sans'": "IBM+Plex+Sans:wght@400;500;600;700",
+  "'Sora'": "Sora:wght@400..700",
+  "'Newsreader'": "Newsreader:opsz,wght@6..72,400..700",
+  "'Public Sans'": "Public+Sans:wght@400..700",
+  "'Syne'": "Syne:wght@400..800",
+  "'Archivo'": "Archivo:wght@400..700",
+  "'Outfit'": "Outfit:wght@400..700",
+  "'Karla'": "Karla:wght@400..700"
+};
+
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+const cards = PAIRINGS.map((p, i) => {
+  const families = [...new Set([FONT_QUERY[p.display], FONT_QUERY[p.body]])]
+    .concat("JetBrains+Mono:wght@400;500");
+  const href = "https://fonts.googleapis.com/css2?family=" + families.join("&family=") + "&display=swap";
+  const css =
+`--font-display: ${p.display}, sans-serif;
+--font:         ${p.body}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;`;
+
+  const style = [
+    `--display-font:${p.display},serif`,
+    `--body-font:${p.body},sans-serif`,
+    p.weight ? `--display-weight:${p.weight}` : '',
+    p.tracking ? `--display-tracking:${p.tracking}` : ''
+  ].filter(Boolean).join(';');
+
+  return `
+  <section class="card">
+    <div class="card__head">
+      <div>
+        <span class="card__n">OPTION ${String(i + 1).padStart(2, '0')}</span>
+        <p class="card__pair">${p.name}${i === 0 ? ' <span>— in use now</span>' : ''}</p>
+      </div>
+    </div>
+    <p class="card__verdict">${p.note}</p>
+
+    <div class="demo" style="${style}">
+      <p class="demo__name">Jui Cheng Ho</p>
+      <p class="demo__role">Backend Engineer · AWS Certified Solutions Architect · MSc Computer Science, University of Bristol</p>
+
+      <p class="demo__h2">Work Experience</p>
+      <p class="demo__body">
+        I build scalable, cloud-native backend systems. Over the past two years I have designed APIs and
+        microservice architectures for an AI startup, migrated production services to the cloud, and put
+        continuous delivery in place so releases stop being a manual ritual.
+      </p>
+
+      <p class="demo__h3">Detecting Team Inefficiency in Hierarchical Multi-Agent RL</p>
+      <p class="demo__kicker">MSc dissertation · University of Bristol</p>
+      <p class="demo__li">
+        Separates <strong>frozen low-level subtask execution</strong> from a <strong>learned high-level
+        allocation policy</strong>, so a failure can be attributed to the allocation rather than to execution.
+      </p>
+      <p class="demo__li">
+        Cut request latency by <strong>50%</strong> by migrating services off on-premise infrastructure.
+      </p>
+      <p class="demo__meta">Aug 2024 – Sep 2025 · Taipei, Taiwan</p>
+    </div>
+
+    <details>
+      <summary>How to apply option ${i + 1}</summary>
+      <pre>&lt;!-- index.html, replacing the existing Google Fonts &lt;link&gt; --&gt;
+&lt;link href="${esc(href)}" rel="stylesheet"&gt;
+
+/* styles.css, in :root */
+${esc(css)}</pre>
+    </details>
+  </section>`;
+}).join('');
+
+document.getElementById('cards').innerHTML = cards;
+
+document.getElementById('themeBtn').addEventListener('click', () => {
+  const r = document.documentElement;
+  const now = r.getAttribute('data-theme')
+    || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  const next = now === 'dark' ? 'light' : 'dark';
+  r.setAttribute('data-theme', next);
+  try { localStorage.setItem('jch-theme', next); } catch (e) {}
+});
+
+const expandBtn = document.getElementById('expandBtn');
+expandBtn.addEventListener('click', () => {
+  const all = [...document.querySelectorAll('details')];
+  const open = all.some(d => !d.open);
+  all.forEach(d => { d.open = open; });
+  expandBtn.textContent = open ? 'Hide all code' : 'Show all code';
+});
+</script>
+</body>
+</html>

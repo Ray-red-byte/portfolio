@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jui Cheng Ho — Backend Engineer</title>
+<meta name="description" content="Backend engineer building scalable, cloud-native systems. AWS Certified Solutions Architect. MSc Computer Science, University of Bristol.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<script>
+  /* Runs before first paint. Marks that JS is available — the scroll-reveal
+     styles only hide content when it is, so the page still renders with JS
+     off — and applies the stored theme so it doesn't flash the wrong one. */
+  (function () {
+    var r = document.documentElement;
+    r.classList.add('js');
+    try {
+      var t = localStorage.getItem('jch-theme');
+      if (t === 'dark' || t === 'light') r.setAttribute('data-theme', t);
+    } catch (e) { /* private mode — fall through to the OS preference */ }
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#about">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#top">Ray<span>.</span></a>
+    <nav class="nav__links" aria-label="Section navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#certification">Certification</a>
+      <a href="#hackathon">Hackathon</a>
+      <a href="#projects">Projects</a>
+      <a href="#writing">Writing</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ══════════════ 1. ABOUT ══════════════ -->
+  <section class="hero" id="about">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <p class="hero__eyebrow" data-lines>Bristol, United Kingdom</p>
+        <h1 class="hero__name" data-lines>Jui Cheng&nbsp;Ho</h1>
+        <p class="hero__role" data-lines>
+          Backend Engineer
+          <span class="sep">·</span> AWS Certified Solutions Architect
+          <span class="sep">·</span> MSc Computer Science, University of Bristol
+        </p>
+
+        <p class="hero__bio" data-lines>
+          I build scalable, cloud-native backend systems. Over the past two years I have designed APIs and
+          microservice architectures for an AI startup, migrated production services to the cloud, and put
+          continuous delivery in place so releases stop being a manual ritual. I like the part of the job where
+          a system stops being a diagram and starts holding real traffic.
+        </p>
+        <p class="hero__bio" data-lines>
+          I am currently finishing an MSc at the University of Bristol, where my dissertation looks at how
+          cooperating reinforcement-learning agents quietly waste each other's time — and how to detect it.
+        </p>
+        <p class="hero__bio" data-lines>
+          I learn by doing first. In the AI era an answer is always one prompt away, which makes it easy to
+          skip the part where understanding actually forms — so I build the thing, break it, and go looking
+          for the theory once I know which question I am asking.
+        </p>
+
+        <div class="hero__links reveal" data-reveal="up">
+          <a class="chunk chunk--gh" href="https://github.com/Ray-red-byte" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="btn__icon"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+            GitHub
+          </a>
+          <a class="chunk chunk--li" href="https://linkedin.com/in/jui-cheng-ho-152646208" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="btn__icon"><path d="M6.94 5.5a2.44 2.44 0 1 1-4.88 0 2.44 2.44 0 0 1 4.88 0zM2.4 21.5h4.3V8.9H2.4v12.6zm7.2-12.6h4.1v1.7h.1a4.5 4.5 0 0 1 4-2.2c4.3 0 5.1 2.8 5.1 6.5v6.6h-4.3v-5.8c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1v5.9H9.6V8.9z"/></svg>
+            LinkedIn
+          </a>
+          <a class="chunk chunk--em" href="mailto:ray67672@gmail.com">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="btn__icon"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.2V18h16V7.2l-8 5.3-8-5.3zM19.3 6H4.7l7.3 4.9L19.3 6z"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+
+      <figure class="hero__portrait reveal" data-reveal="right">
+        <img src="assets/portrait.jpg"
+             alt="Jui Cheng Ho at the Glenfinnan Viaduct, Scotland."
+             width="1000" height="1250">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══════════════ 2. EXPERIENCE ══════════════ -->
+  <section class="section" id="experience">
+    <div class="wrap">
+      <header class="section__head reveal">
+        <span class="section__num">01</span>
+        <h2>Work Experience</h2>
+        <p class="section__sub">Three roles, one direction — from training models, to moving the data, to building the systems underneath.</p>
+      </header>
+
+      <!-- The journey. Each step is one node on a dashed rail; the detail stays
+           deliberately short so the shape of the progression is what reads. -->
+      <ol class="journey">
+
+        <li class="journey__step reveal" data-reveal="up" style="--i:0">
+          <span class="journey__year">2022</span>
+          <div class="journey__head" aria-hidden="true">
+            <span class="journey__dot"><i>01</i></span>
+            <span class="journey__rail"></span>
+          </div>
+          <div class="journey__card">
+            <h3 class="journey__role">Machine Learning Intern</h3>
+            <p class="journey__org">National Taiwan University <span>Civil Engineering</span></p>
+            <p class="journey__what">
+              Applied <strong>Active Learning with Mask R-CNN</strong> to rebar detection, raising average
+              precision by letting the model choose which images were worth labelling next.
+            </p>
+          </div>
+        </li>
+
+        <li class="journey__step reveal" data-reveal="up" style="--i:1">
+          <span class="journey__year">2024</span>
+          <div class="journey__head" aria-hidden="true">
+            <span class="journey__dot"><i>02</i></span>
+            <span class="journey__rail"></span>
+          </div>
+          <div class="journey__card">
+            <h3 class="journey__role">Data Engineer Trainee</h3>
+            <p class="journey__org">AppWorks <span>Taipei</span></p>
+            <p class="journey__what">
+              Built <strong>ETL on Airflow</strong> and <strong>Kafka</strong> streaming pipelines, and designed
+              the APIs and KDTree matching behind <a href="#p-rentright">Rent Right</a> with a cross-domain
+              Scrum team.
+            </p>
+          </div>
+        </li>
+
+        <li class="journey__step reveal" data-reveal="up" style="--i:2">
+          <span class="journey__year">2024 – 2025</span>
+          <div class="journey__head" aria-hidden="true">
+            <span class="journey__dot"><i>03</i></span>
+          </div>
+          <div class="journey__card">
+            <h3 class="journey__role">Backend Engineer</h3>
+            <p class="journey__org">Neurowatt <span>AI Startup</span></p>
+            <p class="journey__what">
+              Architected a <strong>FastAPI microservice system on GKE</strong>, cut request latency
+              <strong>50%</strong> by migrating off on-premise infrastructure to GCP, and replaced manual
+              releases with <strong>CI/CD</strong>.
+            </p>
+          </div>
+        </li>
+
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ 3. EDUCATION ══════════════ -->
+  <section class="section section--alt" id="education">
+    <div class="wrap">
+      <header class="section__head reveal">
+        <span class="section__num">02</span>
+        <h2>Education</h2>
+        <p class="section__sub">From civil engineering to computer science.</p>
+      </header>
+
+      <!-- Same journey component as Work Experience, read chronologically:
+           the maths degree first, then the conversion to computer science. -->
+      <ol class="journey">
+
+        <li class="journey__step reveal" data-reveal="up" style="--i:0">
+          <span class="journey__year">2019 – 2023</span>
+          <div class="journey__head" aria-hidden="true">
+            <span class="journey__dot"><i>01</i></span>
+            <span class="journey__rail"></span>
+          </div>
+          <div class="journey__card">
+            <h3 class="journey__role">Chiao Tung University</h3>
+            <p class="journey__org">BSc Civil Engineering <span>Taipei, Taiwan</span></p>
+            <p class="journey__what">
+              Where the maths came from — grade <strong>A</strong> in Calculus and Engineering Mathematics,
+              and consistently <strong>A / A−</strong> across the computer-science track that pulled me
+              toward software.
+            </p>
+          </div>
+        </li>
+
+        <li class="journey__step reveal" data-reveal="up" style="--i:1">
+          <span class="journey__year">2025 – 2026</span>
+          <div class="journey__head" aria-hidden="true">
+            <span class="journey__dot"><i>02</i></span>
+          </div>
+          <div class="journey__card">
+            <h3 class="journey__role">University of Bristol</h3>
+            <p class="journey__org">MSc Computer Science <span>Bristol, UK</span></p>
+            <p class="journey__what">
+              Systems and low-level work — <strong>C</strong>, computer architecture, and
+              <a href="#p-stag">STAG</a>, a Java engine built on OOP design patterns and SOLID. Finished with
+              a dissertation on <a href="#p-marl">detecting team inefficiency in multi-agent RL</a>.
+            </p>
+          </div>
+        </li>
+
+      </ol>
+    </div>
+  </section>
+
+  <!-- ══════════════ 4. CERTIFICATION ══════════════ -->
+  <section class="section" id="certification">
+    <div class="wrap">
+      <header class="section__head reveal">
+        <span class="section__num">03</span>
+        <h2>Certification</h2>
+        <p class="section__sub">Cloud architecture, validated.</p>
+      </header>
+
+      <div class="cert reveal" data-reveal="scale">
+        <div class="cert__badge">
+          <img src="assets/aws-saa-badge.png" alt="AWS Certified Solutions Architect – Associate badge." width="600" height="600" loading="lazy">
+        </div>
+        <div class="cert__body">
+          <h3>AWS Certified Solutions Architect – Associate</h3>
+          <p class="cert__issuer">Amazon Web Services <span class="sep">·</span> SAA-C03</p>
+          <p class="cert__desc">
+            Covers designing resilient, high-performing, secure and cost-optimised architectures on AWS —
+            compute, storage, networking, identity and the trade-offs between them. Applied day to day across
+            Lambda, S3, EC2 and CloudWatch in the <a href="#p-rentright">Rent Right</a> platform.
+          </p>
+          <p class="cert__id">
+            <span class="cert__id-label">Credential ID</span>
+            <code>b94c9eaf-d905-4400-811e-ae3bf63c342f</code>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ 5. HACKATHON ══════════════ -->
+  <section class="section section--alt" id="hackathon">
+    <div class="wrap">
+      <header class="section__head reveal">
+        <span class="section__num">04</span>
+        <h2>Hackathon</h2>
+      </header>
+
+      <div class="hack reveal" data-reveal="left">
+        <div class="hack__main">
+          <div class="award">
+            <svg class="award__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14.2L7 22.5l5-2.6 5 2.6-1.5-8.3"/></svg>
+            <div>
+              <p class="award__label">AI Special Award</p>
+              <p class="award__event">UKFinnovator Innovation Competition 2026</p>
+            </div>
+          </div>
+          <p class="hack__where">
+            Imperial College London <span class="sep">·</span> 13–14 June 2026
+            <span class="sep">·</span> hosted by UKFin+
+          </p>
+
+          <h3 class="hack__project">Sentinel — FCA Supervision Intelligence</h3>
+
+          <p class="hack__desc">
+            An early-warning system for financial regulators. Sentinel mines the CFPB Consumer Complaint
+            Database for AI- and automation-driven consumer harm, discovers the recurring patterns hiding in
+            it, and ranks them so a supervisor can see <em>what to act on first</em> — balancing consumer
+            protection against financial innovation.
+          </p>
+          <p class="hack__desc">
+            I designed the backend behind the risk assistant. The core of it is a hybrid pipeline: a cheap
+            deterministic model does the wide first pass, and the language model only adjudicates the
+            ambiguous cases. That ordering is the whole point — it bounds hallucination risk to the small
+            slice where judgement is genuinely needed, and keeps inference cost predictable instead of
+            scaling with the size of the corpus. On top of that I built a human-in-the-loop mechanism that
+            routes CRITICAL-severity complaints to a human regulator rather than letting the model close them.
+          </p>
+          <p class="hack__desc">
+            For pattern discovery I chose unsupervised clustering over supervised classification. There is no
+            ground truth for <em>which harm pattern is this</em>, and the goal was to surface patterns nobody
+            had named yet — not to sort complaints into categories we had assumed in advance. Cluster count
+            is chosen by silhouette score, and each pattern is ranked by a transparent weighted priority score
+            over frequency, severity, growth and regulatory relevance.
+          </p>
+
+          <div class="hack__links">
+            <a class="btn btn--primary" href="https://ukfin-london.vercel.app/" target="_blank" rel="noopener">Live dashboard ↗</a>
+            <a class="btn" href="https://github.com/sandyleedev/ukfin-london" target="_blank" rel="noopener">Source ↗</a>
+          </div>
+        </div>
+
+        <aside class="hack__media reveal" data-reveal="right" style="--i:1">
+          <figure class="shot shot--cert">
+            <img src="assets/ukfin-certificate.png" alt="Certificate of Achievement presented to Jui Cheng Ho for the Imperial College London UKFinnovator Innovation Competition, June 2026." loading="lazy" width="2000" height="1414">
+          </figure>
+          <figure class="shot shot--team">
+            <img src="assets/ukfin-team.jpg" alt="The team at the UKFinnovator competition in London." loading="lazy" width="900" height="1200">
+            <figcaption>The team in London, June 2026.</figcaption>
+          </figure>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ 6. PROJECTS ══════════════ -->
+  <section class="section" id="projects">
+    <div class="wrap">
+      <header class="section__head reveal">
+        <span class="section__num">05</span>
+        <h2>Projects</h2>
+        <p class="section__sub">Systems I designed end to end — from cloud infrastructure to a game engine.</p>
+      </header>
+
+      <div class="projects">
+
+        <!-- Rent Right -->
+        <article class="proj reveal" data-reveal="left" style="--i:0" id="p-rentright">
+          <div class="proj__head">
+            <div>
+              <h3 class="proj__title">Rent Right</h3>
+              <p class="proj__kicker">Full-stack rental matching platform <span class="sep">·</span> AppWorks capstone</p>
+            </div>
+            <div class="proj__links">
+              <a href="https://github.com/Ray-red-byte/Rent_RIght" target="_blank" rel="noopener" aria-label="Rent Right on GitHub">GitHub ↗</a>
+            </div>
+          </div>
+          <p class="proj__desc">
+            A rental platform that matches people to flats <em>and</em> to flatmates. Users get real-time
+            notifications when a listing fits their criteria, and a compatibility score against potential
+            roommates — built on a crawl-and-vectorise data pipeline running on AWS.
+          </p>
+          <ul class="proj__points">
+            <li><strong>Roommate matching</strong> — a KDTree nearest-neighbour search over one-hot encoded
+                lifestyle vectors (sleep schedule, cleanliness, noise tolerance) instead of a brute-force
+                pairwise comparison.</li>
+            <li><strong>Data pipeline</strong> — Selenium crawlers running on AWS Lambda extract listings,
+                vectorise them, and load into MongoDB Atlas, with assets held in S3.</li>
+            <li><strong>Infrastructure</strong> — three EC2 instances (Flask app, Redis, Celery) behind NGINX
+                for availability, deployed through GitHub Actions.</li>
+            <li><strong>Notifications</strong> — Celery background workers push personalised listings via the
+                Line Notify API, so the request path never blocks on delivery.</li>
+            <li><strong>Real-time chat</strong> — Socket.IO for instant messaging between matched roommates.</li>
+            <li><strong>Observability</strong> — CloudWatch tracks EC2 metrics, Lambda invocations and login
+                attempts, with automated email alerts.</li>
+          </ul>
+        </article>
+
+        <!-- Chat AI Backend -->
+        <article class="proj reveal" data-reveal="right" style="--i:1" id="p-chatai">
+          <div class="proj__head">
+            <div>
+              <h3 class="proj__title">Chat AI Backend</h3>
+              <p class="proj__kicker">Real-time chat backend in Go</p>
+            </div>
+            <div class="proj__links">
+              <a href="https://github.com/Ray-red-byte/Chat-AI-Backend" target="_blank" rel="noopener" aria-label="Chat AI Backend on GitHub">GitHub ↗</a>
+            </div>
+          </div>
+          <p class="proj__desc">
+            Less a chat app than an excuse to build a production-shaped Go service. The interesting work is
+            underneath the feature list: a caching layer that keeps the database off the hot path, a shutdown
+            sequence that does not drop in-flight messages, and an asynchronous log pipeline that survives a
+            slow consumer.
+          </p>
+          <ul class="proj__points">
+            <li><strong>Redis as a read layer</strong> in front of MongoDB — recent messages and sessions are
+                served from cache, so database round-trips stay off the request path.</li>
+            <li><strong>Graceful shutdown</strong> — in-flight messages are drained and persisted before the
+                process exits, so a rolling deploy doesn't cost you a conversation.</li>
+            <li><strong>Structured logging over Kafka</strong> — an asynchronous producer publishes JSON logs
+                (level, timestamp, caller file and line) to a <code>chatai-logs</code> topic, with a dedicated
+                goroutine draining the delivery-report channel so logging never blocks a handler.</li>
+            <li><strong>OAuth 2.0</strong> session management, served by Gin with Redis-backed auth middleware.</li>
+            <li><strong>WebSocket</strong> transport for real-time message delivery, alongside a conversation
+                CRUD API documented with Swagger.</li>
+            <li><strong>Deployment</strong> — containerised with Docker Compose for local development, and
+                shipped to GKE via Cloud Build.</li>
+          </ul>
+        </article>
+
+        <!-- MARL dissertation -->
+        <article class="proj reveal" data-reveal="left" style="--i:2" id="p-marl">
+          <div class="proj__head">
+            <div>
+              <h3 class="proj__title">Detecting Team Inefficiency in Hierarchical Multi-Agent RL</h3>
+              <p class="proj__kicker">MSc dissertation <span class="sep">·</span> University of Bristol</p>
+            </div>
+            <div class="proj__links">
+              <a href="https://github.com/Ray-red-byte/MARL" target="_blank" rel="noopener" aria-label="MARL repository on GitHub">GitHub ↗</a>
+              <span class="proj__status">code being prepared</span>
+            </div>
+          </div>
+          <p class="proj__desc">
+            When two reinforcement-learning agents cooperate, they can both look busy and still be wasting
+            the team's time — one agent blocked in a corridor, the other assigned a subtask it cannot finish.
+            This project defines that waste precisely enough to measure it, then penalises it during training.
+          </p>
+          <ul class="proj__points">
+            <li>Studies team-level inefficiency and high-level subtask allocation in <strong>hierarchical
+                reinforcement learning</strong>, using Overcooked-AI as the cooperative multi-agent
+                environment.</li>
+            <li>Separates <strong>frozen low-level subtask execution</strong> from a <strong>learned
+                high-level allocation policy</strong>, so a failure can be attributed to the allocation rather
+                than to execution — measured against a flat PPO baseline that maps observations straight to
+                primitive actions.</li>
+            <li>Proposes a <strong>persistent-chain gap penalty</strong>: the high-level policy is penalised
+                only when the same subtask is assigned consecutively, remains incomplete across multiple
+                segments, <em>and</em> its execution gap exceeds a solo reference — three conditions, so
+                ordinary slow progress isn't punished.</li>
+            <li>Calibrates persistence length and gap threshold using the <strong>future same-chain recovery
+                rate</strong>, rather than hand-tuning them.</li>
+            <li>Defines a <strong>gap-analysis measurement</strong> for multi-agent systems, and evaluates
+                across bottleneck and isolated layouts on soup performance, segment-level gap and persistent
+                failure patterns.</li>
+          </ul>
+          <p class="proj__note">Research question: <em>does the selected joint high-level allocation create
+            avoidable interaction loss, or fail to address an unambiguous team bottleneck?</em></p>
+        </article>
+
+        <!-- STAG -->
+        <article class="proj reveal" data-reveal="right" style="--i:3" id="p-stag">
+          <div class="proj__head">
+            <div>
+              <h3 class="proj__title">STAG</h3>
+              <p class="proj__kicker">Configurable multiplayer text-adventure engine <span class="sep">·</span> Java</p>
+            </div>
+            <div class="proj__links">
+              <a href="https://github.com/Ray-red-byte/stag-game" target="_blank" rel="noopener" aria-label="STAG on GitHub">GitHub ↗</a>
+            </div>
+          </div>
+          <p class="proj__desc">
+            A TCP client/server game engine that loads its entire world from data — locations and entities
+            from Graphviz DOT files, actions from XML. New adventures can be authored without touching a
+            line of engine code.
+          </p>
+          <ul class="proj__points">
+            <li><strong>Three-stage command pipeline</strong> — <code>CmdLexer</code> identifies recognised
+                verbs and entities, <code>CmdParser</code> validates and resolves ambiguity, then a built-in
+                or dynamic handler applies the state transition.</li>
+            <li><strong>Data-driven worlds</strong> — DOT for the map graph, XML for actions that consume
+                and produce entities or unlock new routes.</li>
+            <li><strong>Shared multiplayer state</strong> — one authoritative <code>GameState</code> with
+                independent per-player location, inventory and health.</li>
+            <li><strong>Robust parsing</strong> — case-insensitive input with punctuation and decorative
+                words, plus explicit validation for ambiguous, incomplete and composite commands.</li>
+            <li>Built in <strong>Java 17</strong> with OOP design patterns and SOLID principles; covered by
+                unit and integration tests in JUnit 5.</li>
+          </ul>
+          <figure class="proj__figure">
+            <img src="assets/stag-world-map.png" alt="Graph of the extended STAG game world: locations such as cellar, cabin, forest, clearing and riverbank, each holding entities like the elf, trapdoor, coin, axe, potion, key and horn, with arrows showing the paths between them." loading="lazy" width="1000" height="241">
+            <figcaption>The extended world — locations, their entities and the paths between them, generated straight from the DOT definition the engine reads at startup.</figcaption>
+          </figure>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ 7. WRITING ══════════════ -->
+  <section class="section section--alt" id="writing">
+    <div class="wrap">
+      <header class="section__head reveal">
+        <span class="section__num">06</span>
+        <h2>Writing</h2>
+        <p class="section__sub">Explaining something is how I find out whether I actually understood it.</p>
+      </header>
+
+      <div class="writing reveal" data-reveal="scale">
+        <svg class="writing__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h11l5 5v11a0 0 0 0 1 0 0H4z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg>
+        <div class="writing__body">
+          <h3>Technical articles on Medium</h3>
+          <p>
+            I like sharing what I learn. Once I have worked something out — a caching layer, a deployment
+            that kept failing, a paper I had to read three times — I write it up, because putting it in
+            plain words is where you discover whether you understood the thing or merely got it working.
+          </p>
+          <p>
+            So most of what I publish is the write-up I wish had existed when I started: the architecture
+            decision, the trade-off behind it, and the failure mode that only turns up in production. If it
+            saves someone else an afternoon, that is the whole point.
+          </p>
+          <!-- TODO: replace with the real Medium profile URL -->
+          <p class="writing__todo" data-placeholder>
+            <strong>Link pending.</strong> Swap the <code>href</code> on the button below for your Medium
+            profile URL, and delete this paragraph.
+          </p>
+          <a class="btn btn--primary" href="https://medium.com/" target="_blank" rel="noopener">Read on Medium ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p class="footer__name">Jui Cheng Ho</p>
+    <nav class="footer__links" aria-label="Contact links">
+      <a href="https://github.com/Ray-red-byte" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/jui-cheng-ho-152646208" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:ray67672@gmail.com">ray67672@gmail.com</a>
+    </nav>
+    <p class="footer__note">Bristol, United Kingdom</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

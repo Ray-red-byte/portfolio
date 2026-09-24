@@ -1,0 +1,742 @@
+/* ============================================================
+   Jui Cheng Ho — portfolio
+   Light theme by default, dark via prefers-color-scheme or the
+   manual toggle (data-theme on <html>).
+   ============================================================ */
+
+:root {
+  --bg:          #fcfbfe;
+  --bg-alt:      #f5f2fb;
+  --surface:     #ffffff;
+  --border:      #e8e3f3;
+  --border-soft: #f1eef9;
+
+  --text:        #262036;
+  --text-muted:  #5f5877;
+  --text-faint:  #706a82;   /* ~4.7:1 on both --bg and --bg-alt — used at ~12px */
+
+  --accent:      #7359c6;
+  --accent-soft: #f4f1fc;
+  --accent-deep: #5c45a8;
+  --ink:         #4a4180;
+
+  /* Neo-brutalist surface kit: one outline colour, one hard offset. No blur
+     anywhere — depth comes from the solid drop, not from a soft shadow. */
+  --edge:        #191526;
+  --on-accent:   #ffffff;
+  --bw:          2.5px;
+  --pop:         5px;
+
+  --radius:      14px;
+  --radius-sm:   8px;
+  --shadow:      var(--pop) var(--pop) 0 var(--edge);
+  --shadow-lg:   calc(var(--pop) + 3px) calc(var(--pop) + 3px) 0 var(--edge);
+
+  --max:         1080px;
+  --font:        'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display:'Bricolage Grotesque', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono:        'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:          #171425;
+    --bg-alt:      #1d1930;
+    --surface:     #211c36;
+    --border:      #352e52;
+    --border-soft: #2a2447;
+
+    --text:        #ebe8f5;
+    --text-muted:  #aea7c6;
+    --text-faint:  #837c9c;
+
+    --accent:      #b7a3f0;
+    --accent-soft: #272040;
+    --accent-deep: #cebbff;
+    --ink:         #8378c4;
+
+    --shadow:      var(--pop) var(--pop) 0 var(--edge);
+    --shadow-lg:   calc(var(--pop) + 3px) calc(var(--pop) + 3px) 0 var(--edge);
+    /* Outline flips light so the blocks still read against a dark page. */
+    --edge:        #cdc4ea;
+    --on-accent:   #171425;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:          #171425;
+  --bg-alt:      #1d1930;
+  --surface:     #211c36;
+  --border:      #352e52;
+  --border-soft: #2a2447;
+
+  --text:        #ebe8f5;
+  --text-muted:  #aea7c6;
+  --text-faint:  #837c9c;
+
+  --accent:      #b7a3f0;
+  --accent-soft: #272040;
+  --accent-deep: #cebbff;
+  --ink:         #8378c4;
+
+    --shadow:      var(--pop) var(--pop) 0 var(--edge);
+  --shadow-lg:   calc(var(--pop) + 3px) calc(var(--pop) + 3px) 0 var(--edge);
+  /* Outline flips light so the blocks still read against a dark page. */
+  --edge:        #cdc4ea;
+  --on-accent:   #171425;
+}
+
+/* ── base ──────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.16; margin: 0;
+  letter-spacing: -.015em; font-weight: 600;
+}
+p { margin: 0 0 1em; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+strong { font-weight: 650; color: var(--text); }
+em { font-style: italic; }
+
+code {
+  font-family: var(--mono);
+  font-size: .84em;
+  background: var(--bg-alt);
+  border: 1.5px solid var(--edge);
+  border-radius: 5px;
+  padding: .1em .38em;
+  color: var(--text-muted);
+  word-break: break-word;
+}
+
+a { color: var(--accent); text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent); text-underline-offset: 3px; }
+a:hover { color: var(--accent-deep); text-decoration-color: currentColor; }
+
+.sep { color: var(--text-faint); margin: 0 .45em; }
+
+.wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: 24px; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 0 0 var(--radius-sm) 0;
+}
+.skip-link:focus { left: 0; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+/* ── nav ───────────────────────────────────────────────── */
+
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--accent-soft);
+  border-bottom: var(--bw) solid var(--edge);
+}
+
+.nav__inner {
+  max-width: var(--max); margin-inline: auto; padding: 14px 24px;
+  display: flex; align-items: center; gap: 20px;
+}
+
+.nav__brand {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 1.08rem; letter-spacing: -.02em;
+  color: var(--text); text-decoration: none; flex-shrink: 0;
+}
+.nav__brand span { color: var(--accent); }
+
+.nav__links {
+  display: flex; gap: 4px; margin-left: auto;
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+}
+.nav__links::-webkit-scrollbar { display: none; }
+
+.nav__links a {
+  color: var(--text-muted); text-decoration: none;
+  font-size: .875rem; font-weight: 650;
+  padding: 6px 11px; border-radius: 7px; white-space: nowrap;
+  border: 2px solid transparent;           /* reserved, so activation adds no reflow */
+  transition: color .18s ease, background .18s ease, border-color .18s ease;
+}
+.nav__links a:hover { color: var(--text); background: var(--surface); }
+.nav__links a.is-active {
+  color: var(--on-accent); background: var(--accent);
+  border-color: var(--edge);
+}
+
+.theme-toggle {
+  flex-shrink: 0;
+  width: 38px; height: 38px; display: grid; place-items: center;
+  border: var(--bw) solid var(--edge); border-radius: 50%;
+  background: var(--surface); color: var(--text);
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--edge);
+  transition: transform .12s ease, box-shadow .12s ease, color .18s ease;
+}
+.theme-toggle:hover { color: var(--accent); }
+.theme-toggle:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--edge); }
+.theme-toggle svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.icon-moon { display: none; }
+:root[data-theme="dark"] .icon-sun { display: none; }
+:root[data-theme="dark"] .icon-moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .icon-sun  { display: none; }
+  :root:not([data-theme="light"]) .icon-moon { display: block; }
+}
+
+/* ── hero ──────────────────────────────────────────────── */
+
+.hero { position: relative; overflow: hidden; padding: 88px 0 80px; }
+
+.hero__glow {
+  position: absolute; inset: -40% 0 auto -10%;
+  height: 640px; pointer-events: none;
+  background:
+    radial-gradient(48% 52% at 18% 42%, color-mix(in srgb, var(--accent) 10%, transparent) 0%, transparent 70%),
+    radial-gradient(42% 46% at 78% 28%, color-mix(in srgb, var(--ink) 8%, transparent) 0%, transparent 72%);
+  filter: blur(8px);
+}
+
+.hero__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 330px);
+  gap: 52px;
+  align-items: center;
+}
+/* When the portrait is absent the text simply takes the whole row, so a
+   missing assets/portrait.jpg degrades to the original one-column hero. */
+.hero__inner:not(:has(.hero__portrait)) { grid-template-columns: minmax(0, 1fr); }
+
+.hero__portrait {
+  margin: 0;
+  border: var(--bw) solid var(--edge);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  line-height: 0;
+}
+.hero__portrait img { width: 100%; height: auto; }
+
+@media (max-width: 900px) {
+  .hero__inner { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  /* Above the name on a phone, and small enough not to push the copy away. */
+  .hero__portrait { order: -1; width: 168px; justify-self: start; }
+}
+
+.hero__eyebrow {
+  font-family: var(--mono); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-faint); margin: 0 0 14px;
+}
+
+.hero__name {
+  font-size: clamp(2.7rem, 8.4vw, 4.6rem);
+  letter-spacing: -.035em; font-weight: 700; margin: 0 0 16px;
+}
+
+.hero__role {
+  font-size: clamp(.98rem, 2.4vw, 1.1rem);
+  color: var(--text-muted); font-weight: 500;
+  margin: 0 0 30px; max-width: 46ch;
+}
+
+.hero__bio { max-width: 62ch; color: var(--text-muted); font-size: 1.02rem; }
+.hero__bio:last-of-type { margin-bottom: 32px; }
+
+.hero__links { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* ── chunky hero buttons ───────────────────────────────────
+   Solid pill, heavy outline and a hard offset shadow instead of a
+   blur — it reads as a physical key that depresses when pressed.
+   Reserved for the three hero links so they stay the loudest thing
+   on the page; every other button keeps the quiet style.
+   ------------------------------------------------------------ */
+
+.chunk {
+  --lift: 6px;
+  position: relative;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 26px;
+  border: var(--bw) solid var(--edge);
+  border-radius: 999px;
+  background-image: linear-gradient(170deg, var(--c1), var(--c2));
+  color: #fff; text-decoration: none;
+  font-size: .84rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .09em;
+  box-shadow: 0 var(--lift) 0 var(--edge);
+  transition: transform .12s ease, box-shadow .12s ease, filter .18s ease;
+}
+.chunk:hover {
+  color: #fff; filter: saturate(1.12) brightness(1.06);
+  transform: translateY(2px); box-shadow: 0 4px 0 var(--edge);
+}
+.chunk:active { transform: translateY(var(--lift)); box-shadow: 0 0 0 var(--edge); }
+.chunk .btn__icon { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+/* Contrast-checked: white text clears 4.5:1 on the lightest end of each. */
+.chunk--gh { --c1: #6b4bd6; --c2: #4b2ba4; }
+.chunk--li { --c1: #4169d8; --c2: #2848b4; }
+.chunk--em { --c1: #ab3f9c; --c2: #8a2b80; }
+
+@media (max-width: 680px) { .chunk { padding: 12px 20px; font-size: .78rem; } }
+@media (prefers-reduced-motion: reduce) {
+  .chunk:hover, .chunk:active { transform: none; box-shadow: 0 var(--lift) 0 var(--edge); }
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: 9px;
+  border: var(--bw) solid var(--edge); background: var(--surface);
+  color: var(--text); font-size: .88rem; font-weight: 700;
+  text-decoration: none; cursor: pointer;
+  box-shadow: 3px 3px 0 var(--edge);
+  transition: transform .12s ease, box-shadow .12s ease, color .16s ease;
+}
+.btn:hover { color: var(--accent); transform: translate(3px, 3px); box-shadow: 0 0 0 var(--edge); }
+.btn--primary { background: var(--accent); border-color: var(--edge); color: var(--on-accent); }
+.btn--primary:hover { background: var(--accent); color: var(--on-accent); }
+.btn__icon { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+/* ── hero line reveal ──────────────────────────────────────
+   JS wraps each rendered line of the hero copy in .ln (a clipping
+   box) around .ln__i (the moving part), so each line rises out from
+   behind the one above it. --l is a running index across the whole
+   hero, so the lines cascade in reading order rather than restarting
+   at every paragraph.
+   ------------------------------------------------------------ */
+
+.js [data-lines] .ln {
+  display: block; overflow: hidden;
+  /* Room for descenders, taken back so spacing is unchanged. */
+  padding-bottom: .14em; margin-bottom: -.14em;
+}
+.js [data-lines] .ln__i {
+  display: block;
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform .8s cubic-bezier(.22, .61, .36, 1), opacity .8s ease;
+  transition-delay: calc(var(--l, 0) * 95ms);
+  will-change: transform, opacity;
+}
+.js .hero.is-lit [data-lines] .ln__i { transform: none; opacity: 1; }
+
+/* Before the split runs, keep the copy hidden so it cannot flash
+   un-animated. Removed by JS the moment the lines are built. The
+   animation is a failsafe: if main.js is blocked or throws, the copy
+   comes back on its own instead of leaving a headless hero. */
+.js .hero:not(.is-split) [data-lines] {
+  opacity: 0;
+  animation: heroFailsafe 0s linear 1.4s forwards;
+}
+@keyframes heroFailsafe { to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the line-by-line cascade, drop the travel. */
+  .js [data-lines] .ln__i {
+    transform: none !important;
+    transition: opacity .5s ease !important;
+  }
+}
+
+/* ── sections ──────────────────────────────────────────── */
+
+.section { padding: 74px 0; border-top: var(--bw) solid var(--edge); }
+.section--alt { background: var(--bg-alt); }
+
+.section__head { margin-bottom: 44px; max-width: 60ch; }
+.section__num {
+  display: inline-block; font-family: var(--mono); font-size: .74rem;
+  letter-spacing: .1em; margin-bottom: 14px;
+  background: var(--accent); color: var(--on-accent);
+  border: 2px solid var(--edge); border-radius: 6px;
+  padding: 2px 9px; box-shadow: 3px 3px 0 var(--edge);
+}
+.section__head h2 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem); margin-bottom: 10px;
+  font-weight: 800; text-transform: uppercase; letter-spacing: -.01em;
+}
+.section__sub { color: var(--text-muted); font-size: 1rem; margin: 0; }
+
+/* ── journey (work experience) ─────────────────────────────
+   Three steps on a dashed rail. The rail is a flex child of each step's
+   head row, so its length comes from the layout rather than hard-coded
+   offsets — it stays correct at any column width. A negative end margin
+   carries it across the grid gap so the arrow lands on the next dot.
+   ------------------------------------------------------------ */
+
+.journey {
+  --gap: 26px;
+  display: grid;
+  /* Auto-flow rather than a fixed column count, so the same component works
+     for the three work steps and the two education steps. */
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--gap);
+}
+
+.journey__step { position: relative; display: flex; flex-direction: column; }
+
+/* A purple ramp, so the progression reads from the colour alone. */
+.journey__step:nth-child(1) { --step-col: color-mix(in srgb, var(--accent) 42%, var(--text-faint)); }
+.journey__step:nth-child(2) { --step-col: color-mix(in srgb, var(--accent) 72%, var(--surface)); }
+.journey__step:nth-child(3) { --step-col: var(--accent); }
+/* Wherever the journey ends, the final step is full strength. */
+.journey__step:last-child { --step-col: var(--accent); }
+
+.journey__year {
+  font-family: var(--mono); font-size: .74rem; letter-spacing: .08em;
+  color: var(--text-faint); margin-bottom: 10px;
+}
+
+.journey__head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+
+.journey__dot {
+  width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+  display: grid; place-items: center;
+  background: var(--step-col, var(--accent)); color: var(--on-accent);
+  border: var(--bw) solid var(--edge);
+  box-shadow: 3px 3px 0 var(--edge);
+  transform: scale(.4);
+  transition: transform .5s cubic-bezier(.34, 1.56, .64, 1);
+}
+.journey__dot i { font-family: var(--mono); font-style: normal; font-size: .76rem; font-weight: 500; }
+
+.journey__rail {
+  flex: 1; height: 3px; margin-right: calc(var(--gap) * -1);
+  background-image: linear-gradient(to right, var(--edge) 62%, transparent 0);
+  background-size: 11px 3px; background-repeat: repeat-x;
+  position: relative;
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform .75s cubic-bezier(.22, .61, .36, 1);
+}
+.journey__rail::after {                       /* arrowhead */
+  content: ''; position: absolute; right: -2px; top: -4px;
+  border-left: 9px solid var(--edge);
+  border-top: 5.5px solid transparent; border-bottom: 5.5px solid transparent;
+}
+
+/* Driven by the step's own reveal, on its stagger delay. */
+.js .journey__step.is-visible .journey__dot  { transform: scale(1); }
+.js .journey__step.is-visible .journey__rail { transform: scaleX(1); }
+
+.journey__card {
+  flex: 1;
+  background: var(--surface); border: var(--bw) solid var(--edge);
+  border-radius: var(--radius); padding: 22px;
+  box-shadow: var(--shadow);
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+.journey__card:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--edge);
+}
+
+.journey__role { font-size: 1.08rem; margin-bottom: 4px; }
+.journey__org {
+  margin: 0 0 12px; font-size: .88rem; font-weight: 600; color: var(--accent);
+}
+.journey__org span {
+  display: block; font-family: var(--mono); font-size: .72rem;
+  font-weight: 400; color: var(--text-faint); margin-top: 2px;
+}
+.journey__what { color: var(--text-muted); font-size: .93rem; margin: 0; }
+@media (max-width: 860px) {
+  /* The rail turns vertical and runs down the dot column beside each card. */
+  .journey { grid-auto-flow: row; grid-auto-columns: auto; gap: 0; }
+  .journey__step {
+    display: grid; grid-template-columns: 40px minmax(0, 1fr);
+    grid-template-areas: "year year" "head card";
+    column-gap: 18px; padding-bottom: var(--gap);
+  }
+  .journey__year { grid-area: year; }
+  .journey__head {
+    grid-area: head; flex-direction: column; align-items: center;
+    gap: 12px; margin-bottom: 0;
+  }
+  .journey__card { grid-area: card; }
+  .journey__rail {
+    width: 3px; height: auto; margin-right: 0; margin-bottom: calc(var(--gap) * -1);
+    background-image: linear-gradient(to bottom, var(--edge) 62%, transparent 0);
+    background-size: 3px 11px; background-repeat: repeat-y;
+    transform: scaleY(0); transform-origin: top center;
+  }
+  .js .journey__step.is-visible .journey__rail { transform: scaleY(1); }
+  .journey__rail::after {
+    right: auto; top: auto; bottom: -2px; left: -4px;
+    border-left: 5.5px solid transparent; border-right: 5.5px solid transparent;
+    border-top: 9px solid var(--edge); border-bottom: 0;
+  }
+}
+
+/* ── certification ─────────────────────────────────────── */
+
+.cert {
+  display: flex; gap: 26px; align-items: flex-start;
+  background: var(--surface); border: var(--bw) solid var(--edge);
+  border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow);
+  max-width: 780px;
+}
+
+.cert__badge { flex-shrink: 0; width: 104px; }
+.cert__badge img { width: 100%; height: auto; }
+
+.cert__body h3 { font-size: 1.22rem; margin-bottom: 6px; }
+.cert__issuer { font-family: var(--mono); font-size: .82rem; color: var(--text-faint); margin-bottom: 14px; }
+.cert__desc { color: var(--text-muted); font-size: .955rem; margin-bottom: 16px; }
+
+.cert__id {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  margin: 0; padding-top: 14px; border-top: 1px solid var(--border-soft);
+}
+.cert__id-label {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: .09em;
+  color: var(--text-faint); font-weight: 700;
+}
+
+/* ── hackathon ─────────────────────────────────────────── */
+
+.hack { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 34px; align-items: start; }
+
+.award {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--accent); border: var(--bw) solid var(--edge);
+  border-radius: var(--radius); padding: 14px 20px; margin-bottom: 14px;
+  box-shadow: var(--shadow); width: fit-content; max-width: 100%;
+}
+.award__icon { width: 30px; height: 30px; flex-shrink: 0; fill: none; stroke: var(--on-accent); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.award__label { font-family: var(--font-display); margin: 0; font-weight: 800; font-size: 1.08rem; color: var(--on-accent); letter-spacing: -.01em; text-transform: uppercase; }
+.award__event { margin: 0; font-size: .84rem; color: var(--on-accent); opacity: .92; }
+
+.hack__where { font-family: var(--mono); font-size: .8rem; color: var(--text-faint); margin-bottom: 26px; }
+.hack__project { font-size: 1.36rem; margin-bottom: 14px; }
+.hack__desc { color: var(--text-muted); font-size: .98rem; margin-bottom: 16px; max-width: 68ch; }
+.hack__desc:last-of-type { margin-bottom: 26px; }
+
+.hack__links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+
+.hack__media { display: flex; flex-direction: column; gap: 18px; }
+
+.shot {
+  margin: 0; border-radius: var(--radius); overflow: hidden;
+  border: var(--bw) solid var(--edge); background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.shot img { width: 100%; }
+.shot figcaption {
+  font-size: .76rem; color: var(--text-faint);
+  padding: 9px 13px; border-top: var(--bw) solid var(--edge);
+}
+.shot--team { align-self: flex-start; max-width: 230px; }
+
+/* ── projects ──────────────────────────────────────────── */
+
+.projects { display: flex; flex-direction: column; gap: 22px; }
+
+.proj {
+  background: var(--surface); border: var(--bw) solid var(--edge);
+  border-radius: var(--radius); padding: 30px;
+  box-shadow: var(--shadow);
+  transition: transform .14s ease, box-shadow .14s ease;
+  scroll-margin-top: 96px;
+}
+.proj:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--edge); }
+
+.proj__head {
+  display: flex; flex-wrap: wrap; justify-content: space-between;
+  align-items: baseline; gap: 10px 20px; margin-bottom: 14px;
+}
+.proj__title { font-size: 1.28rem; margin-bottom: 4px; max-width: 32ch; }
+.proj__kicker { margin: 0; color: var(--accent); font-weight: 600; font-size: .9rem; }
+
+.proj__links { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+.proj__links a {
+  font-family: var(--mono); font-size: .8rem; text-decoration: none;
+  border: 2px solid var(--edge); border-radius: 7px; padding: 5px 11px;
+  color: var(--text); white-space: nowrap; background: var(--bg-alt);
+  box-shadow: 2px 2px 0 var(--edge);
+  transition: transform .12s ease, box-shadow .12s ease, color .16s ease;
+}
+.proj__links a:hover { color: var(--accent); transform: translate(2px, 2px); box-shadow: 0 0 0 var(--edge); }
+/* Sets expectations before someone clicks through to a repo still being filled in. */
+.proj__status {
+  font-family: var(--mono); font-size: .7rem; color: var(--text-faint);
+  border: 2px dashed var(--edge); border-radius: 6px; padding: 4px 9px; white-space: nowrap;
+}
+
+.proj__desc { color: var(--text-muted); font-size: .985rem; margin-bottom: 18px; max-width: 72ch; }
+
+.proj__points li {
+  position: relative; padding-left: 20px; margin-bottom: 9px;
+  color: var(--text-muted); font-size: .94rem;
+}
+.proj__points li::before {
+  content: ''; position: absolute; left: 3px; top: .7em;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.proj__note {
+  font-size: .9rem; color: var(--text-muted);
+  border-left: 2px solid var(--accent); padding: 2px 0 2px 14px;
+  margin: 18px 0 0;
+}
+
+/* Wide, low figure (the DOT-generated world graph) — full card width so the
+   node labels stay readable. Always on white: it is black-on-white line art. */
+.proj__figure {
+  margin: 18px 0 0; border-radius: var(--radius-sm); overflow: hidden;
+  border: var(--bw) solid var(--edge); background: #fff;
+}
+.proj__figure img { width: 100%; padding: 6px 8px; }
+.proj__figure figcaption {
+  font-size: .78rem; color: var(--text-faint); background: var(--surface);
+  padding: 9px 13px; border-top: var(--bw) solid var(--edge);
+}
+
+/* ── writing ───────────────────────────────────────────── */
+
+.writing {
+  display: flex; gap: 24px; align-items: flex-start;
+  background: var(--surface); border: var(--bw) solid var(--edge);
+  border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow);
+  max-width: 760px;
+}
+.writing__icon {
+  width: 42px; height: 42px; flex-shrink: 0;
+  fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+}
+.writing__body h3 { font-size: 1.18rem; margin-bottom: 10px; }
+.writing__body p { color: var(--text-muted); font-size: .955rem; }
+
+.writing__todo {
+  background: var(--accent-soft);
+  border: 2px dashed var(--edge);
+  border-radius: var(--radius-sm); padding: 11px 14px;
+  font-size: .86rem !important; color: var(--text-muted);
+}
+
+/* ── footer ────────────────────────────────────────────── */
+
+.footer { border-top: var(--bw) solid var(--edge); padding: 36px 0; background: var(--accent-soft); }
+.footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; }
+.footer__name { font-family: var(--font-display); margin: 0; font-weight: 700; letter-spacing: -.02em; }
+.footer__links { display: flex; flex-wrap: wrap; gap: 18px; }
+.footer__links a { font-size: .88rem; color: var(--text-muted); text-decoration: none; }
+.footer__links a:hover { color: var(--accent); }
+.footer__note { margin: 0; font-family: var(--mono); font-size: .76rem; color: var(--text-faint); }
+
+/* ── scroll reveal ─────────────────────────────────────────
+   Bidirectional: blocks fade in as they enter the viewport and
+   fade back out as they leave, so scrolling reads as a sequence
+   of panels rather than one long page.
+   ------------------------------------------------------------ */
+
+/* Scoped to .js (set by the inline head script) so the page is never left
+   invisible when JavaScript is off.
+
+   Blocks travel in from a direction set by data-reveal, and a --i index
+   staggers siblings so a row of cards arrives one after another rather than
+   as one slab. The delay applies only on the way in: on the way out
+   everything leaves together, which stops the page feeling sticky when you
+   scroll back up. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .62s cubic-bezier(.22, .61, .36, 1),
+              transform .62s cubic-bezier(.22, .61, .36, 1);
+  transition-delay: 0ms;
+  will-change: opacity, transform;
+}
+/* Resting (hidden) positions. These must stay ABOVE the .is-visible rule:
+   they carry the same specificity, so whichever comes last wins — and if a
+   direction rule won, the block would fade in but never slide home. */
+.js .reveal[data-reveal="left"]  { transform: translateX(-38px); }
+.js .reveal[data-reveal="right"] { transform: translateX(38px); }
+.js .reveal[data-reveal="up"]    { transform: translateY(38px) scale(.97); }
+.js .reveal[data-reveal="scale"] { transform: scale(.94); }
+
+.js .reveal.is-visible,
+.js .reveal.is-visible[data-reveal] {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+/* The dot and rail inside a journey step animate on the step's own delay. */
+.js .journey__step.is-visible .journey__dot  { transition-delay: calc(var(--i, 0) * 90ms + 60ms); }
+.js .journey__step.is-visible .journey__rail { transition-delay: calc(var(--i, 0) * 90ms + 240ms); }
+
+/* A crossfade carries no motion, so it is kept for reduced-motion users — only
+   the vertical travel is dropped. Previously this rule disabled the reveal
+   outright, which meant the effect never appeared on any machine with
+   "Reduce motion" enabled, or in embedded previews that report it. */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .reveal[data-reveal] { transform: none !important; transition: opacity .45s ease !important; }
+  .js .reveal.is-visible { transition-delay: 0ms !important; }
+  .js .journey__dot, .js .journey__rail { transform: none !important; transition: none !important; }
+  .btn:hover, .proj:hover, .journey__card:hover, .proj__links a:hover { transform: none; }
+}
+
+/* ── responsive ────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .hack { grid-template-columns: 1fr; gap: 28px; }
+  .hack__media { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+  .shot--cert { flex: 1 1 380px; }
+  .shot--team { max-width: 190px; }
+}
+
+@media (max-width: 680px) {
+  .wrap { padding-inline: 18px; }
+  .nav__inner { padding: 11px 18px; gap: 12px; }
+  .nav__links { margin-left: 0; }
+  .nav__brand { display: none; }
+
+  .hero { padding: 54px 0 56px; }
+  .hero__role { margin-bottom: 24px; }
+
+  .section { padding: 56px 0; }
+  .section__head { margin-bottom: 34px; }
+
+
+  .cert, .writing { flex-direction: column; gap: 18px; padding: 24px; }
+  .proj { padding: 22px; }
+  .proj__title { font-size: 1.14rem; }
+
+  .hack__media { flex-direction: column; }
+  .shot--cert { max-width: 100%; flex: none; }
+  /* Keep the team photo secondary to the certificate even when stacked. */
+  .shot--team { max-width: 220px; flex: none; }
+
+  .footer__inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+  /* Shorter travel on small screens, where a 26px lift reads as a jump. */
+  .js .reveal { transform: translateY(18px); }
+}
+
+/* ── print ─────────────────────────────────────────────── */
+
+@media print {
+  .nav, .theme-toggle, .hero__glow, .writing__todo { display: none !important; }
+  .js .reveal { opacity: 1 !important; transform: none !important; }
+  body { background: #fff; color: #000; }
+  .section { page-break-inside: avoid; border-top: none; }
+}
